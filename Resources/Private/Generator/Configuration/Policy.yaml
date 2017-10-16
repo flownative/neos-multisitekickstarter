@@ -1,0 +1,61 @@
+{namespace k=Neos\Kickstarter\ViewHelpers}
+privilegeTargets:
+
+  'Neos\Flow\Security\Authorization\Privilege\Entity\Doctrine\EntityPrivilege':
+    '{packageKey}:Site.{siteNodeName -> k:format.ucfirst()}':
+      matcher: 'isType("Neos\Neos\Domain\Model\Site") && property("nodeName") == "{siteNodeName}"'
+
+  'Neos\Neos\Security\Authorization\Privilege\NodeTreePrivilege':
+    '{packageKey}:Nodes.{siteNodeName -> k:format.ucfirst()}':
+      matcher: 'isDescendantNodeOf("/sites/{siteNodeName}")'
+
+  'Wwwision\AssetConstraints\Security\Authorization\Privilege\ReadAssetPrivilege':
+    '{packageKey}:Assets.{siteNodeName -> k:format.ucfirst()}':
+      matcher: 'isInCollection("{siteNodeName -> k:format.ucfirst()}")'
+
+  'Wwwision\AssetConstraints\Security\Authorization\Privilege\ReadAssetCollectionPrivilege':
+    '{packageKey}:AssetCollection.{siteNodeName -> k:format.ucfirst()}':
+      matcher: 'isTitled("{siteNodeName -> k:format.ucfirst()}")'
+
+roles:
+  # Grant non-authenticated users permission to site & assets
+  'Neos.Flow:Anonymous':
+    privileges:
+      -
+        privilegeTarget: '{packageKey}:Site.{siteNodeName -> k:format.ucfirst()}'
+        permission: GRANT
+      -
+        privilegeTarget: '{packageKey}:Assets.{siteNodeName -> k:format.ucfirst()}'
+        permission: GRANT
+
+  # Grant administrators permission to site, nodes, assets & asset collection
+  'Neos.Neos:Administrator':
+    privileges:
+      -
+        privilegeTarget: '{packageKey}:Site.{siteNodeName -> k:format.ucfirst()}'
+        permission: GRANT
+      -
+        privilegeTarget: '{packageKey}:Nodes.{siteNodeName -> k:format.ucfirst()}'
+        permission: GRANT
+      -
+        privilegeTarget: '{packageKey}:Assets.{siteNodeName -> k:format.ucfirst()}'
+        permission: GRANT
+      -
+        privilegeTarget: '{packageKey}:AssetCollection.{siteNodeName -> k:format.ucfirst()}'
+        permission: GRANT
+
+  # Grant site role access to "this" site, nodes, assets and collection
+  '{packageKey}:{siteNodeName -> k:format.ucfirst()}':
+    privileges:
+    -
+      privilegeTarget: '{packageKey}:Site.{siteNodeName -> k:format.ucfirst()}'
+      permission: GRANT
+    -
+      privilegeTarget: '{packageKey}:Nodes.{siteNodeName -> k:format.ucfirst()}'
+      permission: GRANT
+    -
+      privilegeTarget: '{packageKey}:Assets.{siteNodeName -> k:format.ucfirst()}'
+      permission: GRANT
+    -
+      privilegeTarget: '{packageKey}:AssetCollection.{siteNodeName -> k:format.ucfirst()}'
+      permission: GRANT
