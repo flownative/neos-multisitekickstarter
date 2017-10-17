@@ -7,6 +7,34 @@ sites are prepared to be used in a multi-site setup. That means they come with
 the needed roles, privileges and settings to be separate from an editors view,
 while still being served in the same Neos installation.
 
+Installation
+============
+
+``composer require flownative/neos-multisitekickstarter``
+
+.. note::
+    **Composer adjustment needed**
+
+    This package kickstarts sites that depend on the *Wwwision.AssetConstraints*
+    package created by Bastian Waidelich. This package is officially in an experimental
+    state, and thus not available via packagist.
+
+    Additionally (at the time of writing), the original package is not compatible
+    with Neos 3.x. Therefore a fork has been created, and a project using a site
+    created with the kickstarter has to adjust it's *root composer manifest* by
+    adding a *repositories* and a *require* entry as follow::
+
+        "repositories": [
+            {
+                "type": "git",
+                "url": "https://github.com/kdambekalns/Wwwision.AssetConstraints.git"
+            }
+        ],
+
+        "require": {
+            "wwwision/assetconstraints": "dev-neos3-compatibility",
+        }
+
 Usage
 =====
 
