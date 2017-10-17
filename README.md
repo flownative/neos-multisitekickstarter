@@ -6,23 +6,6 @@ The Flownative Multisite Kickstarter is a simple generator for Neos sites. These
 
 `composer require flownative/neos-multisitekickstarter`
 
-### Composer adjustment needed
-
-This package kickstarts sites that depend on the *Wwwision.AssetConstraints* package created by Bastian Waidelich. This package is officially in an experimental state, and thus not available via packagist.
-
-Additionally (at the time of writing), the original package is not compatible with Neos 3.x. Therefore a fork has been created, and a project using a site created with the kickstarter has to adjust it's *root composer manifest* by adding a *repositories* and a *require* entry as follows:
-
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/kdambekalns/Wwwision.AssetConstraints.git"
-        }
-    ],
-
-    "require": {
-        "wwwision/assetconstraints": "dev-neos3-compatibility",
-    }
-
 ## Usage
 
 ### Kickstarting a site
