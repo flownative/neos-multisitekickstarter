@@ -1,3 +1,7 @@
+[![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
+[![Packagist](https://img.shields.io/packagist/v/flownative/neos-multisitekickstarter.svg)](https://packagist.org/packages/flownative/neos-multisitekickstarter)
+[![Maintenance level: Friendship](https://img.shields.io/badge/maintenance-%E2%99%A1%E2%99%A1-ff69b4.svg)](https://www.flownative.com/en/products/open-source.html)
+
 # Multisite Kickstarter for Neos
 
 The Flownative Multisite Kickstarter is a simple generator for Neos sites. These sites are prepared to be used in a multi-site setup. That means they come with the needed roles, privileges and settings to be separate from an editors view, while still being served in the same Neos installation.
